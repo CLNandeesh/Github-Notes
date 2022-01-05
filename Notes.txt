@@ -467,7 +467,183 @@ WHy its noteworthy
 Who maintains the project
 Metadata of the project
 
-Add this while creating the remote repo
+Add this while creating the remote repo or new file and create new file
+README.txt
+
+Readme files have .md as extension
+README.md
+
+//Markdown 
+README.md
+There is a format to prepare readme files
+Refer that video or any tutorial
+
+//Collaborating workflow
+
+Case 1:
+Remote has 1 commit
+User A clone and worked in local and commited with 2 commits
+User B has done few changes and pushed his changes to remote repo
+Now if User A tries to push his changes to remote repo then it will throw error, he needs to pull and then push back her changes to remote repo
+
+FEATURE BRANCH WORKFLOW
+-----------------------
+Note: Branch will be created based on feature or bug fixes
+
+NOte:
+//pull changes from remote repo to local
+git fetch origin main
+
+//Then check branches
+git branch -r
+
+//Then switch to any specific changes
+git switch <branch name>
+Now u can see all the changes in working directory
+
+
+
+Centralized Workflow:
+
+LEAD:
+1. Create repo in Github
+2. Clone it to local by LEAD
+3. Create a Framework in local by LEAD
+4. Add/Commit and Push to Remote
+5. Create new branch for Sprint1 and Push to Remote by LEAD
+git switch -c Sprint1
+git push origin Sprint1
+
+QA:
+6. QA CLone the repo 
+git clone <URL>
+7. Check Branches in Remote and Switch to Sprint1 branch
+git branch -r
+git switch Sprint1
+8. Do all needed changhes in local repo, Add, Commit and Push to remote Sprint1
+Note: before push to Sprint1 branch take Pull from SPrint1 branch to get all the latest changes 
+git pull origin Sprint1
+
+Note: If you got merge conflicts in any file when you pull changes from remote to local
+Open the file, keep either changes
+Add, Commit and Push the changes 
+
+git push origin Sprint1
+
+
+LEAD:
+9. Move to Sprint1 branch if you are not in Sprint1 and Take pull from remote Sprint1 branch
+git switch Sprint1
+git pull origin Sprint1
+10. Move to main branch
+git switch main
+11. Merge Sprint1 branch to main branch
+git merge Sprint1
+12. Push changes of local main branch to remote main branch 
+git push origin main
+
+Note: 
+Main branch will be controlled by Lead
+Only finalized code will be pushed to main branch at last by Lead
+QA will work on Feature branch created by Lead and they will push all there changes to Feature branch, which is later Merged to main branch by Lead
+After all your work is done in Sprint1 branch then we can delete it
+
+
+//PULL REQUEST
+Workflow:
+1. Do some changes locally on Feature branch [Add+Commit]
+2. Push feature branch to git hub
+3. Open pull request using feature branch[Sprint1] to merge Sprint1 to main branch using Git Hub 
+Note: even we can compare Sprint1 with main branch if needed
+Now Lead will receive Pull request notification in mail
+4. Wait for PR to be approved and merged
+5. Lead will check, conversation will go on through Commit[comment] section, he will review and finally merge Sprint1 branch to Main branch
+6. At end he will delete Sprint1 branch
+Now even Qa in local can delete that Sprint branch
+git branch -D Sprint1
+Now QA can pull main to local repo
+
+//Conflicts when merging feature branch to main branch in guthub by Lead
+Solution 1:
+1. Click on resolve conflict 
+2. Do all changes in the colflict files
+3. Mark as Resolve
+4. Commit message
+5. Click on Merge pull request
+6. Confirm
+
+Solution 2:
+1. Lead pull changes from remote Sprint1 to local Sprint1
+git switch Sprint1
+git push origin Sprint1
+2. Switch to main branch
+git switch main
+3. Merge Sprint1 to main branch
+git merge Sprint1
+4. Get pull of remote main to local main
+git pull origin main
+
+You get conflict , solve it
+Open the conflict file, Keep any one change and save
+
+5. Add/ Commit and push to main repo
+git add.
+git commit -m "message"
+git push origin main
+
+
+BRANCH PROTECTION
+------------------
+1. Wihtout pull request u cant merge to main
+Go to setting
+Click om Branches
+Add a rule
+   Branch pattern name:main
+   Select first option :Require a pull request before merging
+Now before merging anything to main pull request is mandatory
+
+
+FORK:
+-----
+Creating personal copy of other user repo in our git hub account
+
+Steps:
+Go to anyone repo and click on Fork button
+Local copy of his repo will be created in our account
+Now clone to our local and do changes and push to this remote repo
+
+Note:
+We can fork other repo to our account
+Do changes and push to remote repo in our account
+we can also send pull request to real owner and can merge these changes to that main user account remote repo if needed
+
+GIT STASHING:
+-------------
+If we want to move from one branch to other branch without commiting new changes then we need to do stashing and move to other branch
+later we can come back to original branch and do pop to revert those changes back
+
+Case 1:Work on any Main branch, commit and switch to feature branch --there will be no problem
+Case 2: Work on Main branch do not commit and try to switch to feature branch
+2 option: 
+Changes will come from main branch to feature branch [if we not do satshing]
+Git will not allow to switch to feature branch without commit [we need to do satsh]
+
+Note: while moving from one branch to other its good to commit and switch to other branch OR do stashing
+
+Solution: 
+//do stashing and switch to feature branch [Move data from working directory or staging area to temporary buffer]
+git stash
+
+Come back to main branch and do [Bring back content from temporary buffer to working directory or to staging area]
+git stash pop
+
+to revert all the satshed changes and to working directory or to staging area
+
+ 
+
+
+
+
 
 
 
